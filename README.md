@@ -4,6 +4,9 @@ Here is a description of the project and installation instructions for GitHub:
 
 This project uses Venom-Bot to automate forwarding messages between WhatsApp groups. It monitors specified source groups for messages containing certain keywords and forwards these messages to other specified groups. The bot also handles different types of media messages, including text, images, videos, audio, documents, and stickers.
 
+Text messages are filtered by a list of keywords which can be found in app.js. The list is not the best snd has some critical redunance. BUT GIVE A FUCK. It works and i hope it helps out. Misuse for personal purposes are also possible with this. 
+(save oneview pictures and prevent from deleting,...)
+
 ### Features
 
 - Monitors specified WhatsApp groups for messages containing specific keywords.
