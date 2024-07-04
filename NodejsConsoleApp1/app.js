@@ -71,17 +71,22 @@ venom
 
 
 function start(client) {
-   /* const sourceGroupIds = [
-        '4915758362018-1583496033@g.us', // Replace with your source group ID
-        '4915140440209-1547593893@g.us'  // Replace with your third group ID
-    ];
-    */
+    /* const sourceGroupIds = [
+         '4915758362018-1583496033@g.us', // Replace with your source group ID
+         '4915140440209-1547593893@g.us'  // Replace with your third group ID
+     ];
+     */
     //const destinationGroupId = '120363294702560643@g.us'; // Replace with your destination group ID
     const groupIds = [
-        '4915758362018-1583496033@g.us', // Replace with your source group ID
-        '4915140440209-1547593893@g.us', // Replace with your third group ID
-        '120363294702560643@g.us', // Replace with your destination group ID
+        '4915758362018-1583496033@g.us', //  bliter welzheim
+        '4915140440209-1547593893@g.us', // blitzer rems murr kreis 2
+        '120363294702560643@g.us', //  eigene gruppe
+        '4917695594803-1539094468@g.us', //  blitzer rems murr kreis 1
+        '491622651794-1616419022@g.us', // blitzer rems murr kreis 3
+        '4915140440209-1565020604@g.us', //  blitzer rems murr kreis 4
+        '491728434067-1550243912@g.us', // blitzer rems murr kreis 5
     ];
+
     const keywords = [
         "blitzer", "cops", "verkehr", "bullen", "stau", "civi", "zivil",
         "tempo", "radar", "droge", "geschwindi", "kontrolle", "streife",
@@ -91,8 +96,22 @@ function start(client) {
         "verdächtig", "kripo", "raser", "straßenkontrolle", "alkohol",
         "drogenkontrolle", "verkehrsunfall", "polizeieinsatz", "fahndung",
         "geschwindigkeitsmessung", "geschwindigkeitsüberwachung",
-        "zivilstreife", "verkehrspolizei", "streifenwagen", "feuer","b29","b14","stutt","welz","weiler","breite","immer","noch"
+        "zivilstreife", "verkehrspolizei", "streifenwagen", "feuer", "b29", "b14",
+        "stutt", "welz", "weiler", "breite", "immer", "noch", "laser", "Welzheim",
+        "Schwäbis", "Gmünd", "dorf", "berg", "bach", "Plüderhausen", "bach", "Murrhardt",
+        "Backnang", "Remshalden", "Winterbach", "Mutlangen", "Gschwend", "Althütte", "Winnenden",
+        "Waiblingen", "Breitenfürst", "Ebnisee", "Haubersbronn", "Steinenberg", "Weissach", "Kronhütte",
+        "Heubach", "Pfahlbronn", "Hohenacker", "Endersbach", "Hohenstadt", "Wäschenbeuren", "Neuweiler",
+        "Fornsbach", "Steinbach", "weiler", "berg", "bach", "mühle", "hütte", "stein", "feld"
     ];
+
+    const keywords2 = ["blitzer",
+        "tempo", "radar", "polizei", "poko","anhänger","foto",
+        "geschwindig", "kontrolle",
+        "verkehrskontrolle", "zivil","bilder,"
+    ];
+
+
     client.onMessage(async (message) => {
         logMessage(message);
 
@@ -102,10 +121,14 @@ function start(client) {
 
                 if (message.type === 'chat' && containsKeyword(message.body, keywords)) {
                     // Forward text messages if they contain the keywords
+
                     await Promise.all(targetGroupIds.map(async groupId => {
-                        await client.sendText(groupId, message.body);
+                        if (((groupId != groupIds[0] || groupId != groupIds[2]) && containsKeyword(message.body, keywords2) || (groupId != groupIds[1] || groupId != groupIds[3] || groupId != groupIds[4] || groupId != groupIds[5] || groupId != groupIds[6]))) {
+                            await client.sendText(groupId, message.body);
+                        }
                     }));
                     console.log(`Text message forwarded to ${targetGroupIds}:`, message.body);
+
                 } else if (['image', 'video', 'audio', 'ptt', 'document', 'sticker'].includes(message.type)) {
                     const mediaData = await client.decryptFile(message);
                     const base64Data = mediaData.toString('base64');
@@ -117,11 +140,14 @@ function start(client) {
                     fs.writeFileSync(filePath, mediaData, 'base64');
 
                     await Promise.all(targetGroupIds.map(async groupId => {
-                        if (message.type === 'image') {
-                            await client.sendImage(groupId, filePath, filename, caption);
-                        } else {
-                            await client.sendFile(groupId, filePath, filename, caption);
+                        if (groupId == groupIds[2] || groupId == groupIds[0]) { // only sent images to own group !
+                            if (message.type === 'image') {
+                                await client.sendImage(groupId, filePath, filename, caption);
+                            } else {
+                                await client.sendFile(groupId, filePath, filename, caption);
+                            }
                         }
+
                     }));
                     console.log(`${message.type} message forwarded to ${targetGroupIds} with filename: ${filename} and caption: ${caption}`);
 
@@ -144,77 +170,10 @@ function start(client) {
     process.stdin.resume();
 }
 
-
-
 function containsKeyword(text, keywords) {
     const cleanedText = text.replace(/\s+/g, '').toLowerCase();
     return keywords.some(keyword => cleanedText.includes(keyword.toLowerCase()));
 }
-
-function start_ld(client) {
-    const sourceGroupId = '4915758362018-1583496033@g.us'; // Replace with your source group ID
-    const destinationGroupId = '120363294702560643@g.us'; // Replace with your destination group ID
-    const thirdgroupId = "4915140440209-1547593893@g.us";
-    const groups = [sourceGroupId, destinationGroupId, thirdGroupId];
-
-    client.onMessage(async (message) => {
-        logMessage(message);
-        let destinationRelated;
-        if (message.from === destinationGroupId) {
-            destinationRelated = sourceGroupId;
-        } else {
-            destinationRelated = destinationGroupId;
-        }
-        if ((message.from === sourceGroupId && message.isGroupMsg) || (message.from === destinationGroupId && message.isGroupMsg) || (message.from === thirdgroupId && message.isGroupMsg)) {
-
-            try {
-                if (message.type === 'chat') {
-                    // Forward text messages
-                    await client.sendText(destinationRelated, message.body);
-                    console.log('Text message forwarded:', message.body);
-
-                }
-                else if (['image', 'video', 'audio', 'ptt', 'document', 'sticker'].includes(message.type)) {
-                    const mediaData = await client.decryptFile(message);
-                    const base64Data = mediaData.toString('base64');
-                    const mimeType = message.mimetype;
-                    const filename = message.filename || generateRandomFilename(message.type);
-                    const caption = message.caption || '';
-                    const filePath = path.join(getMediaDirectory(message.type), filename);
-
-                    fs.writeFileSync(filePath, mediaData, 'base64');
-                    if (message.type === 'image') {
-                        await client.sendImage(destinationRelated, filePath, filename, caption);
-                    } else if (message.type === 'video') {
-                        await client.sendFile(destinationRelated, filePath, filename, caption);
-                    } else if (['audio', 'ptt'].includes(message.type)) {
-                        await client.sendFile(destinationRelated, filePath, filename, caption);
-                    } else {
-                        client.sendText(destinationRelated, message.from + ' sent a message which i can not interprated right now...');
-                    }
-
-                    // Delete the media file after sending
-                    try {
-                        fs.unlinkSync(filePath);
-                        console.log(`Deleted ${message.type} file: ${filePath}`);
-                    } catch (error) {
-                        console.error(`Error deleting ${message.type} file: ${filePath}`, error);
-                    }
-
-                    console.log(`${message.type} message forwarded with filename: ${filename} and caption: ${caption}`);
-
-
-
-                }
-            } catch (erro) {
-                console.error(`Error forwarding message:`, erro);
-            }
-        }
-    });
-    process.stdin.resume();
-}
-
-
 
 function logMessage(message) {
 
@@ -239,8 +198,6 @@ function logMessage(message) {
     });
 
 }
-
-
 
 async function forwardMessage(client, message, destinationGroupId) {
 
@@ -286,8 +243,6 @@ async function forwardMessage(client, message, destinationGroupId) {
 
 }
 
-
-
 function readLogFiles() {
 
     const logFiles = fs.readdirSync(logsDir).filter(file => file.endsWith('.json'));
@@ -303,8 +258,6 @@ function readLogFiles() {
     });
 
 }
-
-
 
 async function testForwardingFromLogs(client, destinationGroupId) {
 
