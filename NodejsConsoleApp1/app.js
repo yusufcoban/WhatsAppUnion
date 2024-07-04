@@ -9,6 +9,44 @@ const qrCodeDir = path.join(__dirname, 'qrcodes');
 const imagesDir = path.join(__dirname, 'images');
 const videosDir = path.join(__dirname, 'videos');
 const memosDir = path.join(__dirname, 'memos');
+const groupIds = [
+    '4915758362018-1583496033@g.us', //  bliter welzheim hauptgruppe
+    '4915140440209-1547593893@g.us', // blitzer rems murr kreis 2
+    '120363294702560643@g.us', //  eigene gruppe
+    '4917695594803-1539094468@g.us', //  blitzer rems murr kreis 1
+    '491622651794-1616419022@g.us', // blitzer rems murr kreis 3
+    '4915140440209-1565020604@g.us', // blitzer rems murr kreis 5
+    '4915140440209-1589031006@g.us'//  blitzer rems murr kreis 4
+];
+
+const keywords = [
+    "blitzer", "cops", "verkehr", "bullen", "stau", "civi", "zivil",
+    "tempo", "radar", "droge", "geschwindi", "kontrolle", "streife",
+    "polizei", "drogen", "sirene", "blaulicht", "unfall",
+    "geschwindigkeitskontrolle", "geschwindigkeitsbegrenzung",
+    "verkehrskontrolle", "radarkontrolle", "fahrzeugkontrolle",
+    "verdächtig", "kripo", "raser", "straßenkontrolle", "alkohol",
+    "drogenkontrolle", "verkehrsunfall", "polizeieinsatz", "fahndung",
+    "geschwindigkeitsmessung", "geschwindigkeitsüberwachung",
+    "zivilstreife", "verkehrspolizei", "streifenwagen", "feuer", "b29", "b14",
+    "stutt", "welz", "weiler", "breite", "immer", "noch", "laser", "Welzheim",
+    "Schwäbis", "Gmünd", "dorf", "berg", "bach", "Plüderhausen", "bach", "Murrhardt",
+    "Backnang", "Remshalden", "Winterbach", "Mutlangen", "Gschwend", "Althütte", "Winnenden",
+    "Waiblingen", "Breitenfürst", "Ebnisee", "Haubersbronn", "Steinenberg", "Weissach", "Kronhütte",
+    "Heubach", "Pfahlbronn", "Hohenacker", "Endersbach", "Hohenstadt", "Wäschenbeuren", "Neuweiler",
+    "Fornsbach", "Steinbach", "weiler", "berg", "bach", "mühle", "hütte", "stein", "feld", "??"
+];
+
+const keywords2 = ["blitzer",
+    "tempo", "radar", "polizei", "poko", "anhänger", "foto",
+    "geschwindig", "kontrolle",
+    "verkehrskontrolle", "zivil", "bilder", "pk", "container", "laser", "kasten", "box", "??"
+];
+
+const negative_keywords2 = ["stau",
+    "unfall", "beobacht"
+];
+
 
 
 if (!fs.existsSync(videosDir)) {
@@ -71,47 +109,6 @@ venom
 
 
 function start(client) {
-    /* const sourceGroupIds = [
-         '4915758362018-1583496033@g.us', // Replace with your source group ID
-         '4915140440209-1547593893@g.us'  // Replace with your third group ID
-     ];
-     */
-    //const destinationGroupId = '120363294702560643@g.us'; // Replace with your destination group ID
-    const groupIds = [
-        '4915758362018-1583496033@g.us', //  bliter welzheim
-        '4915140440209-1547593893@g.us', // blitzer rems murr kreis 2
-        '120363294702560643@g.us', //  eigene gruppe
-        '4917695594803-1539094468@g.us', //  blitzer rems murr kreis 1
-        '491622651794-1616419022@g.us', // blitzer rems murr kreis 3
-        '4915140440209-1565020604@g.us', //  blitzer rems murr kreis 4
-        '491728434067-1550243912@g.us', // blitzer rems murr kreis 5
-    ];
-
-    const keywords = [
-        "blitzer", "cops", "verkehr", "bullen", "stau", "civi", "zivil",
-        "tempo", "radar", "droge", "geschwindi", "kontrolle", "streife",
-        "polizei", "drogen", "sirene", "blaulicht", "unfall",
-        "geschwindigkeitskontrolle", "geschwindigkeitsbegrenzung",
-        "verkehrskontrolle", "radarkontrolle", "fahrzeugkontrolle",
-        "verdächtig", "kripo", "raser", "straßenkontrolle", "alkohol",
-        "drogenkontrolle", "verkehrsunfall", "polizeieinsatz", "fahndung",
-        "geschwindigkeitsmessung", "geschwindigkeitsüberwachung",
-        "zivilstreife", "verkehrspolizei", "streifenwagen", "feuer", "b29", "b14",
-        "stutt", "welz", "weiler", "breite", "immer", "noch", "laser", "Welzheim",
-        "Schwäbis", "Gmünd", "dorf", "berg", "bach", "Plüderhausen", "bach", "Murrhardt",
-        "Backnang", "Remshalden", "Winterbach", "Mutlangen", "Gschwend", "Althütte", "Winnenden",
-        "Waiblingen", "Breitenfürst", "Ebnisee", "Haubersbronn", "Steinenberg", "Weissach", "Kronhütte",
-        "Heubach", "Pfahlbronn", "Hohenacker", "Endersbach", "Hohenstadt", "Wäschenbeuren", "Neuweiler",
-        "Fornsbach", "Steinbach", "weiler", "berg", "bach", "mühle", "hütte", "stein", "feld"
-    ];
-
-    const keywords2 = ["blitzer",
-        "tempo", "radar", "polizei", "poko","anhänger","foto",
-        "geschwindig", "kontrolle",
-        "verkehrskontrolle", "zivil","bilder,"
-    ];
-
-
     client.onMessage(async (message) => {
         logMessage(message);
 
@@ -119,12 +116,17 @@ function start(client) {
             try {
                 const targetGroupIds = groupIds.filter(id => id !== message.from);
 
-                if (message.type === 'chat' && containsKeyword(message.body, keywords)) {
+                if (message.type === 'chat') {
                     // Forward text messages if they contain the keywords
 
                     await Promise.all(targetGroupIds.map(async groupId => {
-                        if (((groupId != groupIds[0] || groupId != groupIds[2]) && containsKeyword(message.body, keywords2) || (groupId != groupIds[1] || groupId != groupIds[3] || groupId != groupIds[4] || groupId != groupIds[5] || groupId != groupIds[6]))) {
-                            await client.sendText(groupId, message.body);
+                        try {
+                            if (checkifpass(groupId, message.body, message.from)) {
+                                await client.sendText(groupId, message.body);
+                                console.log(`Text message forwarded to ${groupId}:`, message.body);
+                            }
+                        } catch (error) {
+                            console.error(`Error sending text message to ${groupId}:`, error);
                         }
                     }));
                     console.log(`Text message forwarded to ${targetGroupIds}:`, message.body);
@@ -140,12 +142,19 @@ function start(client) {
                     fs.writeFileSync(filePath, mediaData, 'base64');
 
                     await Promise.all(targetGroupIds.map(async groupId => {
-                        if (groupId == groupIds[2] || groupId == groupIds[0]) { // only sent images to own group !
-                            if (message.type === 'image') {
-                                await client.sendImage(groupId, filePath, filename, caption);
-                            } else {
-                                await client.sendFile(groupId, filePath, filename, caption);
+                        try {
+                            if (groupId !== message.from) {
+                                if (groupId === groupIds[2] || groupId === groupIds[0]) { // only send images to own group!
+                                    if (message.type === 'image') {
+                                        await client.sendImage(groupId, filePath, filename, caption);
+                                    } else {
+                                        await client.sendFile(groupId, filePath, filename, caption);
+                                    }
+                                    console.log(`${message.type} message forwarded to ${groupId} with filename: ${filename} and caption: ${caption}`);
+                                }
                             }
+                        } catch (error) {
+                            console.error(`Error sending ${message.type} message to ${groupId}:`, error);
                         }
 
                     }));
@@ -168,6 +177,27 @@ function start(client) {
     });
 
     process.stdin.resume();
+}
+
+function checkifpass(empfaenger, message, sender) {
+    console.log(`${message} will be checked from sender ${sender} to ${empfaenger}`);
+    const isSenderWelzheim = sender === groupIds[0] || sender === groupIds[2];
+    const isEmpfaengerWelzheim = empfaenger === groupIds[0] || empfaenger === groupIds[2];
+    if (sender != empfaenger) {
+        if (isSenderWelzheim) {
+            if (isEmpfaengerWelzheim && containsKeyword(message, keywords)) {
+                console.log(`Will be sent to ${empfaenger}`);
+                return true;
+            }
+        } else {
+            const keywordsAdmin = ["lösch", "entfernen", "unnötig"];
+            if (!containsKeyword(message, keywordsAdmin)) {
+                console.log(`Will be sent to ${empfaenger}`);
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 function containsKeyword(text, keywords) {
