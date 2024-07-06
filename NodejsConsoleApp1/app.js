@@ -34,13 +34,13 @@ const keywords = [
     "Backnang", "Remshalden", "Winterbach", "Mutlangen", "Gschwend", "Althütte", "Winnenden",
     "Waiblingen", "Breitenfürst", "Ebnisee", "Haubersbronn", "Steinenberg", "Weissach", "Kronhütte",
     "Heubach", "Pfahlbronn", "Hohenacker", "Endersbach", "Hohenstadt", "Wäschenbeuren", "Neuweiler",
-    "Fornsbach", "Steinbach", "weiler", "berg", "bach", "mühle", "hütte", "stein", "feld", "??"
+    "Fornsbach", "Steinbach", "weiler", "berg", "bach", "mühle", "hütte", "stein", "feld", "??", "tunnel", "gesperrt", "??", "??", "30", "70", "80", "100", "120", "bus"
 ];
 
 const keywords2 = ["blitzer",
     "tempo", "radar", "polizei", "poko", "anhänger", "foto",
     "geschwindig", "kontrolle",
-    "verkehrskontrolle", "zivil", "bilder", "pk", "container", "laser", "kasten", "box", "??"
+    "verkehrskontrolle", "zivil", "bilder", "pk", "container", "laser", "kasten", "box", "??", "??", "30", "70", "80", "100", "120", "bus"
 ];
 
 const negative_keywords2 = ["stau",
@@ -110,9 +110,9 @@ venom
 
 function start(client) {
     client.onMessage(async (message) => {
-        logMessage(message);
 
         if (groupIds.includes(message.from) && message.isGroupMsg) {
+            logMessage(message);
             try {
                 const targetGroupIds = groupIds.filter(id => id !== message.from);
 
@@ -191,7 +191,7 @@ function checkifpass(empfaenger, message, sender) {
             }
         } else {
             const keywordsAdmin = ["lösch", "entfernen", "unnötig"];
-            if (!containsKeyword(message, keywordsAdmin)) {
+            if (!containsKeyword(message, keywordsAdmin) && containsKeyword(message, keywords2)) {
                 console.log(`Will be sent to ${empfaenger}`);
                 return true;
             }
