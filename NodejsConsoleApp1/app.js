@@ -40,14 +40,14 @@ const keywords = [
 const keywords2 = ["blitzer",
     "tempo", "radar", "polizei", "poko", "anhänger", "foto",
     "geschwindig", "kontrolle",
-    "verkehrskontrolle", "zivil", "bilder", "pk", "container", "laser", "kasten", "box", "??", "??", "30", "70", "80", "100", "120", "bus"
+    "verkehrskontrolle", "zivil", "bilder", "pk", "container", "laser", "kasten", "box", "??", "??", "30", "70", "80", "100", "120", "bus","schritt"
 ];
 
 const negative_keywords2 = ["stau",
     "unfall", "beobacht"
 ];
 
-
+let lastMessages = [];
 
 if (!fs.existsSync(videosDir)) {
     fs.mkdirSync(videosDir);
@@ -113,6 +113,13 @@ function start(client) {
 
         if (groupIds.includes(message.from) && message.isGroupMsg) {
             logMessage(message);
+
+            // Check if the message is the same as any of the last 10 messages
+            if (isDuplicateMessage(message)) {
+                console.log('Duplicate message detected, ignoring it.');
+                return;
+            }
+
             try {
                 const targetGroupIds = groupIds.filter(id => id !== message.from);
 
@@ -173,11 +180,25 @@ function start(client) {
             } catch (erro) {
                 console.error(`Error forwarding message:`, erro);
             }
+            // Add the current message to the list of last 10 messages
+            updateLastMessages(message);
         }
     });
 
     process.stdin.resume();
 }
+
+function isDuplicateMessage(message) {
+    return lastMessages.some(lastMessage => lastMessage.body === message.body);
+}
+
+function updateLastMessages(message) {
+    if (lastMessages.length >= 10) {
+        lastMessages.shift();
+    }
+    lastMessages.push(message);
+}
+
 
 function checkifpass(empfaenger, message, sender) {
     console.log(`${message} will be checked from sender ${sender} to ${empfaenger}`);
