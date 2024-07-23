@@ -40,7 +40,7 @@ const keywords = [
 const keywords2 = ["blitzer",
     "tempo", "radar", "polizei", "poko", "anhänger", "foto",
     "geschwindig", "kontrolle",
-    "verkehrskontrolle", "zivil", "bilder", "pk", "container", "laser", "kasten", "box", "??", "??", "30", "70", "80", "100", "120", "bus","schritt"
+    "verkehrskontrolle", "zivil", "bilder", "pk", "container", "laser", "kasten", "box", "??", "??", "30", "70", "80", "100", "120", "bus", "schritt"
 ];
 
 const negative_keywords2 = ["stau",
@@ -112,24 +112,19 @@ function start(client) {
     client.onMessage(async (message) => {
 
         if (groupIds.includes(message.from) && message.isGroupMsg) {
-            logMessage(message);
-
-            // Check if the message is the same as any of the last 10 messages
-            if (isDuplicateMessage(message)) {
-                console.log('Duplicate message detected, ignoring it.');
-                return;
-            }
+            //logMessage(message);
 
             try {
                 const targetGroupIds = groupIds.filter(id => id !== message.from);
 
-                if (message.type === 'chat') {
+                if (message.type === 'chat' && !isDuplicateMessage(message.body)) {
                     // Forward text messages if they contain the keywords
-
+                    //addTolastMessages
                     await Promise.all(targetGroupIds.map(async groupId => {
                         try {
                             if (checkifpass(groupId, message.body, message.from)) {
                                 await client.sendText(groupId, message.body);
+                                updateLastMessages(message.body);
                                 console.log(`Text message forwarded to ${groupId}:`, message.body);
                             }
                         } catch (error) {
@@ -180,8 +175,6 @@ function start(client) {
             } catch (erro) {
                 console.error(`Error forwarding message:`, erro);
             }
-            // Add the current message to the list of last 10 messages
-            updateLastMessages(message);
         }
     });
 
@@ -189,7 +182,8 @@ function start(client) {
 }
 
 function isDuplicateMessage(message) {
-    return lastMessages.some(lastMessage => lastMessage.body === message.body);
+    console.error(`Duplicate message: `, message);
+    return lastMessages.some(lastMessage => lastMessage == message);
 }
 
 function updateLastMessages(message) {
