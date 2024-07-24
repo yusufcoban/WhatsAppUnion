@@ -122,15 +122,15 @@ function start(client) {
                     //addTolastMessages
                     await Promise.all(targetGroupIds.map(async groupId => {
                         try {
-                            if (checkifpass(groupId, message.body, message.from)) {
+                            if (checkifpass(groupId, message.body, message.from, message.author)) {
                                 await client.sendText(groupId, message.body);
-                                updateLastMessages(message.body);
                                 console.log(`Text message forwarded to ${groupId}:`, message.body);
                             }
                         } catch (error) {
                             console.error(`Error sending text message to ${groupId}:`, error);
                         }
                     }));
+                    updateLastMessages(message.body);
                     console.log(`Text message forwarded to ${targetGroupIds}:`, message.body);
 
                 } else if (['image', 'video', 'audio', 'ptt', 'document', 'sticker'].includes(message.type)) {
@@ -194,7 +194,7 @@ function updateLastMessages(message) {
 }
 
 
-function checkifpass(empfaenger, message, sender) {
+function checkifpass(empfaenger, message, sender, author) {
     console.log(`${message} will be checked from sender ${sender} to ${empfaenger}`);
     const isSenderWelzheim = sender === groupIds[0] || sender === groupIds[2];
     const isEmpfaengerWelzheim = empfaenger === groupIds[0] || empfaenger === groupIds[2];
@@ -205,11 +205,18 @@ function checkifpass(empfaenger, message, sender) {
                 return true;
             }
         } else {
+            //sender is rems murr kreis gruppe
             const keywordsAdmin = ["lösch", "entfernen", "unnötig"];
-            if (!containsKeyword(message, keywordsAdmin) && containsKeyword(message, keywords2)) {
-                console.log(`Will be sent to ${empfaenger}`);
-                return true;
-            }
+            if (sender)
+                if (!containsKeyword(message, keywordsAdmin) && containsKeyword(message, keywords2)) {
+                    if (author == "491717560044@c.us" && !isEmpfaengerWelzheim) {
+                        //rems murr kreis sync ROLLI deactivated
+                        console.error(`Rolli is writing to all groups itself`);
+                        return false;
+                    }
+                    console.log(`Will be sent to ${empfaenger}`);
+                    return true;
+                }
         }
     }
     return false;
