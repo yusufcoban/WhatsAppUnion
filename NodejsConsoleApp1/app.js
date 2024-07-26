@@ -116,7 +116,9 @@ function start(client) {
 
             try {
                 const targetGroupIds = groupIds.filter(id => id !== message.from);
-
+                 //console.log current lastMessages
+                console.log('----------------START MESSAGE----------------------------');
+                console.log('Current lastMessages:', lastMessages);
                 if (message.type === 'chat' && !isDuplicateMessage(message.body)) {
                     // Forward text messages if they contain the keywords
                     //addTolastMessages
@@ -131,7 +133,9 @@ function start(client) {
                         }
                     }));
                     updateLastMessages(message.body);
-                    console.log(`Text message forwarded to ${targetGroupIds}:`, message.body);
+                    console.log('Current lastMessages after update:', lastMessages);
+                    console.log('----------------END MESSAGE----------------------------' );
+
 
                 } else if (['image', 'video', 'audio', 'ptt', 'document', 'sticker'].includes(message.type)) {
                     const mediaData = await client.decryptFile(message);
@@ -182,26 +186,29 @@ function start(client) {
 }
 
 function isDuplicateMessage(message) {
-    console.error(`Duplicate message: `, message);
-    return lastMessages.some(lastMessage => lastMessage == message);
+    for (let i = 0; i < lastMessages.length; i++) {
+        if (lastMessages[i] === message) {
+            console.error(`Duplicate message: `, message);
+            return true;
+        }
+    }
+    return false;
 }
 
 function updateLastMessages(message) {
     if (lastMessages.length >= 10) {
-        lastMessages.shift();
+        lastMessages = lastMessages.slice(-5); // Keep only the last 5 items
     }
     lastMessages.push(message);
 }
 
 
 function checkifpass(empfaenger, message, sender, author) {
-    console.log(`${message} will be checked from sender ${sender} to ${empfaenger}`);
     const isSenderWelzheim = sender === groupIds[0] || sender === groupIds[2];
     const isEmpfaengerWelzheim = empfaenger === groupIds[0] || empfaenger === groupIds[2];
     if (sender != empfaenger) {
         if (isSenderWelzheim) {
             if (isEmpfaengerWelzheim && containsKeyword(message, keywords)) {
-                console.log(`Will be sent to ${empfaenger}`);
                 return true;
             }
         } else {
@@ -214,7 +221,6 @@ function checkifpass(empfaenger, message, sender, author) {
                         console.error(`Rolli is writing to all groups itself`);
                         return false;
                     }
-                    console.log(`Will be sent to ${empfaenger}`);
                     return true;
                 }
         }
