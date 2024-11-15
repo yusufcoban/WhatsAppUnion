@@ -33,15 +33,13 @@ const keywords = [
     "Backnang", "Remshalden", "Winterbach", "Mutlangen", "Gschwend", "Althütte", "Winnenden",
     "Waiblingen", "Breitenfürst", "Ebnisee", "Haubersbronn", "Steinenberg", "Weissach", "Kronhütte",
     "Heubach", "Pfahlbronn", "Hohenacker", "Endersbach", "Hohenstadt", "Wäschenbeuren", "Neuweiler",
-    "Fornsbach", "Steinbach", "weiler", "berg", "bach", "mühle", "hütte", "stein", "feld", "??", "tunnel", "gesperrt", "??", "??", "30", "70", "80", "100", "120", "bus"
+    "Fornsbach", "Steinbach", "weiler", "berg", "bach", "mühle", "hütte", "stein", "feld", "??", "tunnel", "gesperrt", "??", "??", "30", "70", "80", "100", "120", "bus", "b29", "b14"
 ];
 
 const keywords2 = ["blitzer", "tempo", "radar", "polizei", "poko", "anhänger", "foto",
     "geschwindig", "kontrolle", "verkehrskontrolle", "zivil", "bilder", "pk", "container",
-    "laser", "kasten", "box", "??", "??", "30", "70", "80", "100", "120", "bus", "schritt"
+    "laser", "kasten", "box", "??", "??", "30", "70", "80", "100", "120", "bus", "schritt", "b29", "b14"
 ];
-
-const negative_keywords2 = ["stau", "unfall", "beobacht"];
 
 let lastMessages = [];
 let lastContentMessages = [];
@@ -67,6 +65,7 @@ venom.create({
 function start(client) {
     client.onMessage(async (message) => {
         if (groupIds.includes(message.from) && message.isGroupMsg) {
+            const isSenderWelzheim = message.from === groupIds[0] || message.from === groupIds[2];
             try {
                 const targetGroupIds = groupIds.filter(id => id !== message.from);
 
@@ -75,17 +74,17 @@ function start(client) {
                     console.log('Current lastMessages:', lastMessages);
 
                     await Promise.all(targetGroupIds.map(async groupId => {
-                        if (checkIfPass(groupId, message.body, message.from, message.author)) {
+                        if (checkIfPass(groupId, message.body, message.from, message.author) && !isDuplicateMessage(message.body)) {
                             await client.sendText(groupId, message.body);
                             console.log(`Text message forwarded to ${groupId}:`, message.body);
+                            updateLastMessages(message.body);
                         }
                     }));
 
-                    updateLastMessages(message.body);
                     console.log('Current lastMessages after update:', lastMessages);
                     console.log('----------------END MESSAGE----------------------------');
                 } else if (['image', 'video', 'audio', 'ptt', 'document', 'sticker'].includes(message.type)) {
-                    if (!isDuplicateContent(message)) {
+                    if (!isDuplicateContent(message) && isSenderWelzheim) {
                         const mediaData = await client.decryptFile(message);
                         const filename = message.filename || generateRandomFilename(message.type);
                         const caption = message.caption || '';
@@ -116,7 +115,6 @@ function start(client) {
             }
         }
     });
-
     process.stdin.resume();
 }
 
@@ -143,7 +141,7 @@ function addContentMessageToList(message) {
 function updateLastMessages(newMessage) {
     const normalizedMessage = normalizeMessage(newMessage);
     lastMessages.push(normalizedMessage);
-    if (lastMessages.length > 10) {
+    if (lastMessages.length > 20) {
         lastMessages.shift();
     }
 }
