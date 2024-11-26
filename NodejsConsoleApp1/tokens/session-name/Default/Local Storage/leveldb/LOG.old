@@ -1,0 +1,84 @@
+2024/11/22-07:39:13.408 303c Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb/MANIFEST-000001
+2024/11/22-07:39:13.419 303c Recovering log #54
+2024/11/22-07:39:13.422 303c Reusing old log C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb/000054.log 
+2024/11/22-09:09:29.037 343c Level-0 table #58: started
+2024/11/22-09:09:29.052 343c Level-0 table #58: 16158 bytes OK
+2024/11/22-09:09:29.058 343c Delete type=0 #54
+2024/11/22-14:59:44.046 3468 Level-0 table #60: started
+2024/11/22-14:59:44.055 3468 Level-0 table #60: 16138 bytes OK
+2024/11/22-14:59:44.060 3468 Delete type=0 #57
+2024/11/22-18:29:51.398 343c Level-0 table #62: started
+2024/11/22-18:29:51.407 343c Level-0 table #62: 15785 bytes OK
+2024/11/22-18:29:51.412 343c Delete type=0 #59
+2024/11/22-18:29:51.413 343c Compacting 4@0 + 1@1 files
+2024/11/22-18:29:51.418 343c Generated table #63@0: 32 keys, 3849 bytes
+2024/11/22-18:29:51.418 343c Compacted 4@0 + 1@1 files => 3849 bytes
+2024/11/22-18:29:51.422 343c compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/11/22-18:29:51.422 343c Delete type=2 #53
+2024/11/22-18:29:51.423 343c Delete type=2 #55
+2024/11/22-18:29:51.423 343c Delete type=2 #58
+2024/11/22-18:29:51.423 343c Delete type=2 #60
+2024/11/22-18:29:51.423 343c Delete type=2 #62
+2024/11/22-23:44:12.298 343c Level-0 table #65: started
+2024/11/22-23:44:12.306 343c Level-0 table #65: 14817 bytes OK
+2024/11/22-23:44:12.311 343c Delete type=0 #61
+2024/11/23-09:10:29.199 343c Level-0 table #67: started
+2024/11/23-09:10:29.209 343c Level-0 table #67: 15044 bytes OK
+2024/11/23-09:10:29.215 343c Delete type=0 #64
+2024/11/23-15:50:49.620 343c Level-0 table #69: started
+2024/11/23-15:50:49.630 343c Level-0 table #69: 15227 bytes OK
+2024/11/23-15:50:49.636 343c Delete type=0 #66
+2024/11/23-21:21:07.100 343c Level-0 table #71: started
+2024/11/23-21:21:07.115 343c Level-0 table #71: 16087 bytes OK
+2024/11/23-21:21:07.120 343c Delete type=0 #68
+2024/11/23-21:21:07.121 343c Compacting 4@0 + 1@1 files
+2024/11/23-21:21:07.129 343c Generated table #72@0: 32 keys, 3006 bytes
+2024/11/23-21:21:07.129 343c Compacted 4@0 + 1@1 files => 3006 bytes
+2024/11/23-21:21:07.133 343c compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/11/23-21:21:07.134 343c Delete type=2 #63
+2024/11/23-21:21:07.134 343c Delete type=2 #65
+2024/11/23-21:21:07.134 343c Delete type=2 #67
+2024/11/23-21:21:07.134 343c Delete type=2 #69
+2024/11/23-21:21:07.134 343c Delete type=2 #71
+2024/11/24-00:51:16.670 343c Level-0 table #74: started
+2024/11/24-00:51:16.678 343c Level-0 table #74: 15677 bytes OK
+2024/11/24-00:51:16.683 343c Delete type=0 #70
+2024/11/24-14:31:52.700 343c Level-0 table #76: started
+2024/11/24-14:31:52.706 343c Level-0 table #76: 14598 bytes OK
+2024/11/24-14:31:52.711 343c Delete type=0 #73
+2024/11/24-19:12:10.751 343c Level-0 table #78: started
+2024/11/24-19:12:10.759 343c Level-0 table #78: 15964 bytes OK
+2024/11/24-19:12:10.764 343c Delete type=0 #75
+2024/11/25-06:52:50.035 343c Level-0 table #80: started
+2024/11/25-06:52:50.047 343c Level-0 table #80: 15258 bytes OK
+2024/11/25-06:52:50.059 343c Delete type=0 #77
+2024/11/25-06:52:50.060 343c Compacting 4@0 + 1@1 files
+2024/11/25-06:52:50.067 343c Generated table #81@0: 32 keys, 3008 bytes
+2024/11/25-06:52:50.067 343c Compacted 4@0 + 1@1 files => 3008 bytes
+2024/11/25-06:52:50.071 343c compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/11/25-06:52:50.072 343c Delete type=2 #72
+2024/11/25-06:52:50.072 343c Delete type=2 #74
+2024/11/25-06:52:50.072 343c Delete type=2 #76
+2024/11/25-06:52:50.073 343c Delete type=2 #78
+2024/11/25-06:52:50.073 343c Delete type=2 #80
+2024/11/25-14:23:11.476 343c Level-0 table #83: started
+2024/11/25-14:23:11.485 343c Level-0 table #83: 15522 bytes OK
+2024/11/25-14:23:11.492 343c Delete type=0 #79
+2024/11/25-18:53:28.189 343c Level-0 table #85: started
+2024/11/25-18:53:28.198 343c Level-0 table #85: 15929 bytes OK
+2024/11/25-18:53:28.203 343c Delete type=0 #82
+2024/11/25-22:43:36.389 343c Level-0 table #87: started
+2024/11/25-22:43:36.404 343c Level-0 table #87: 16099 bytes OK
+2024/11/25-22:43:36.408 343c Delete type=0 #84
+2024/11/26-08:44:04.329 343c Level-0 table #89: started
+2024/11/26-08:44:04.340 343c Level-0 table #89: 16099 bytes OK
+2024/11/26-08:44:04.346 343c Delete type=0 #86
+2024/11/26-08:44:04.347 343c Compacting 4@0 + 1@1 files
+2024/11/26-08:44:04.355 343c Generated table #90@0: 32 keys, 3069 bytes
+2024/11/26-08:44:04.355 343c Compacted 4@0 + 1@1 files => 3069 bytes
+2024/11/26-08:44:04.362 343c compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/11/26-08:44:04.362 343c Delete type=2 #81
+2024/11/26-08:44:04.362 343c Delete type=2 #83
+2024/11/26-08:44:04.362 343c Delete type=2 #85
+2024/11/26-08:44:04.362 343c Delete type=2 #87
+2024/11/26-08:44:04.362 343c Delete type=2 #89

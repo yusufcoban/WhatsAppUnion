@@ -3,6 +3,6 @@
     "es": "^0.8.0",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
-    "venom-bot": "^5.1.0"
+    "venom-bot": "github:orkestral/venom#master"
   }
 }
