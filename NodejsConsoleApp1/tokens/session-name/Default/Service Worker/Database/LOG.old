@@ -1,3 +1,2 @@
-2024/11/22-07:39:13.409 2d7c Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Service Worker\Database/MANIFEST-000001
-2024/11/22-07:39:13.420 2d7c Recovering log #3
-2024/11/22-07:39:13.423 2d7c Reusing old log C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Service Worker\Database/000003.log 
+2025/02/05-20:19:24.498 4624 Creating DB C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Service Worker\Database since it was missing.
+2025/02/05-20:19:24.515 4624 Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Service Worker\Database/MANIFEST-000001

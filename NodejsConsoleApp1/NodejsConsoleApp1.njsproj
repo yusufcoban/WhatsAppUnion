@@ -28,6 +28,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="modi.js" />
+    <Content Include="app - Copy.js" />
     <Content Include="app.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />

@@ -1,3 +1,2 @@
-2024/11/22-07:39:13.418 19e4 Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\shared_proto_db\metadata/MANIFEST-000001
-2024/11/22-07:39:13.419 19e4 Recovering log #3
-2024/11/22-07:39:13.422 19e4 Reusing old log C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\shared_proto_db\metadata/000003.log 
+2025/02/05-20:19:23.295 7868 Creating DB C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\shared_proto_db\metadata since it was missing.
+2025/02/05-20:19:23.344 7868 Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\shared_proto_db\metadata/MANIFEST-000001
