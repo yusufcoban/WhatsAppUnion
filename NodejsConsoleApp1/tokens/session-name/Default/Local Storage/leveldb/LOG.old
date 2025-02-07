@@ -1,8 +1,0 @@
-2025/02/05-20:19:23.278 4624 Creating DB C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb since it was missing.
-2025/02/05-20:19:23.325 4624 Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb/MANIFEST-000001
-2025/02/05-23:29:42.498 72b8 Level-0 table #5: started
-2025/02/05-23:29:42.507 72b8 Level-0 table #5: 18417 bytes OK
-2025/02/05-23:29:42.514 72b8 Delete type=0 #3
-2025/02/06-10:10:19.671 72b8 Level-0 table #7: started
-2025/02/06-10:10:19.679 72b8 Level-0 table #7: 15235 bytes OK
-2025/02/06-10:10:19.685 72b8 Delete type=0 #4

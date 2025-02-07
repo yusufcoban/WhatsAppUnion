@@ -1,3 +1,29 @@
-2025/02/06-12:44:18.699 73e8 Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb/MANIFEST-000001
-2025/02/06-12:44:18.706 73e8 Recovering log #6
-2025/02/06-12:44:18.706 73e8 Reusing old log C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb/000006.log 
+2025/02/06-16:35:32.948 4e24 Creating DB C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb since it was missing.
+2025/02/06-16:35:33.016 4e24 Reusing MANIFEST C:\Users\admin\source\repos\NodejsConsoleApp1\NodejsConsoleApp1\tokens\session-name\Default\Local Storage\leveldb/MANIFEST-000001
+2025/02/06-18:35:45.594 4a9c Level-0 table #5: started
+2025/02/06-18:35:45.606 4a9c Level-0 table #5: 19668 bytes OK
+2025/02/06-18:35:45.615 4a9c Delete type=0 #3
+2025/02/06-21:05:55.597 4a9c Level-0 table #7: started
+2025/02/06-21:05:55.616 4a9c Level-0 table #7: 15889 bytes OK
+2025/02/06-21:05:55.624 4a9c Delete type=0 #4
+2025/02/07-03:16:14.207 4a9c Level-0 table #9: started
+2025/02/07-03:16:14.218 4a9c Level-0 table #9: 14819 bytes OK
+2025/02/07-03:16:14.226 4a9c Delete type=0 #6
+2025/02/07-10:06:38.679 4a9c Level-0 table #11: started
+2025/02/07-10:06:38.688 4a9c Level-0 table #11: 15611 bytes OK
+2025/02/07-10:06:38.701 4a9c Delete type=0 #8
+2025/02/07-13:36:49.072 4a9c Level-0 table #13: started
+2025/02/07-13:36:49.081 4a9c Level-0 table #13: 15739 bytes OK
+2025/02/07-13:36:49.088 4a9c Delete type=0 #10
+2025/02/07-18:57:04.945 4a9c Level-0 table #15: started
+2025/02/07-18:57:04.952 4a9c Level-0 table #15: 13971 bytes OK
+2025/02/07-18:57:04.962 4a9c Delete type=0 #12
+2025/02/07-18:57:04.962 4a9c Compacting 4@0 + 1@1 files
+2025/02/07-18:57:04.967 4a9c Generated table #16@0: 8 keys, 2037 bytes
+2025/02/07-18:57:04.967 4a9c Compacted 4@0 + 1@1 files => 2037 bytes
+2025/02/07-18:57:04.971 4a9c compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/02/07-18:57:04.971 4a9c Delete type=2 #7
+2025/02/07-18:57:04.972 4a9c Delete type=2 #9
+2025/02/07-18:57:04.972 4a9c Delete type=2 #11
+2025/02/07-18:57:04.972 4a9c Delete type=2 #13
+2025/02/07-18:57:04.972 4a9c Delete type=2 #15

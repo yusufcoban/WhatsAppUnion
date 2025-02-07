@@ -24,6 +24,16 @@ const groupCategories = {
         '4915224759700-1541342346@g.us',
         '4915224759700-1520799152@g.us',
         '4915224759700-1510511994@g.us'
+    ],
+    "esslingen": [
+        '4917610758670-1492209414@g.us',
+        '4915207149404-1498196358@g.us',
+        '4915207149404-1511851066@g.us',
+        '4915224759700-1507059954@g.us',
+        '4915224759700-1500329085@g.us',
+        '4915224759700-1515601183@g.us',
+        '4915207149404-1519339843@g.us',
+        '4917610758670-1488803942@g.us'
     ]
 };
 
@@ -31,7 +41,7 @@ const keywords2 = ["blitzer", "tempo", "radar", "polizei", "poko", "anhänger", "
     "geschwindig", "kontrolle", "verkehrskontrolle", "zivil", "bilder", "pk", "container", "läster", "bitzer",
     "laser", "kasten", "box", "30", "70", "80", "100", "120", "bus", "schritt", "b29", "b14"
 ];
-const keywords3 = ["löschen", "beobachtet"];
+const keywords3 = ["löschen", "beobachtet","löschen"];
 
 
 let lastMessages = {};

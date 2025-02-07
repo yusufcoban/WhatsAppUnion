@@ -186,7 +186,7 @@ function start(client) {
                 }
                 if (groudIDsEss.includes(message.from)) {
                     console.log('----------------START ESSLINGER GROUP----------------------------');
-                    if (message.type === 'chat' && !isDuplicateMessageEss(message.body) && containsKeyword(message.body, keywords2)) {
+                    if (message.type === 'chat' && !isDuplicateMessageEss(message.body) && containsKeyword(message.body, keywords2) && !checkForRollie(message.author)) {
                         const targetGroupIds = groudIDsEss.filter(id => id !== message.from);
                         console.log('----------------START MESSAGE ESSLINGER----------------------------');
                         console.log('------' + message + '------');
@@ -299,6 +299,14 @@ function checkIfPass(empfaenger, message, sender, author) {
     }
     return false;
 }
+
+function checkForRollie(author) {
+    if (author !== "491717560044@c.us") {
+        return true;
+    }
+    return false;
+}
+
 function checkIfGeneral(empfaenger, message, sender, author) {
     if (sender !== empfaenger) {
         if (containsKeyword(message, keywords2) && !containsKeyword(message, ["lösch", "entfernen", "unnötig"])) {
