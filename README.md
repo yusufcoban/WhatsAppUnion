@@ -26,7 +26,7 @@ Text messages are filtered by a list of keywords which can be found in app.js. T
 
    ```sh
    git clone https://github.com/yourusername/whatsapp-group-forwarder.git
-   cd whatsapp-group-forwarder
+   cd WhatsAppUnion
    ```
 
 2. **Install Dependencies**
@@ -37,11 +37,7 @@ Text messages are filtered by a list of keywords which can be found in app.js. T
    npm install
    ```
 
-3. **Configure the Project**
-
-   Create a `.env` file in the root directory of the project and add your configuration details, such as session name, group IDs, etc.
-
-4. **Run the Bot**
+3. **Run the Bot**
 
    Start the bot using the following command:
 
@@ -49,7 +45,7 @@ Text messages are filtered by a list of keywords which can be found in app.js. T
    node index.js
    ```
 
-5. **Scan the QR Code**
+4. **Scan the QR Code**
 
    When you run the bot for the first time, you will need to scan a QR code to authenticate the session with your WhatsApp account. The QR code will be saved as an image file in the `qrcodes` directory.
 
@@ -72,7 +68,4 @@ Feel free to fork the repository and submit pull requests. For major changes, pl
 ### License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Replace `https://github.com/yourusername/whatsapp-group-forwarder.git` with your actual GitHub repository URL. Also, add any additional configuration details or environment variables as needed in the `.env` file section.
+ 
