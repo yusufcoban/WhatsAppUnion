@@ -31,6 +31,7 @@
     <Content Include="modi.js" />
     <Content Include="app - Copy.js" />
     <Content Include="app.js" />
+    <Content Include="modi_onlywelzheim.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
