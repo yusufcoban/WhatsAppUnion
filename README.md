@@ -25,7 +25,7 @@ Text messages are filtered by a list of keywords which can be found in app.js. T
 1. **Clone the Repository**
 
    ```sh
-   git clone https://github.com/yourusername/whatsapp-group-forwarder.git
+   git clone [https://github.com/yourusername/whatsapp-group-forwarder.git](https://github.com/yusufcoban/WhatsAppUnion.git)****
    cd whatsapp-group-forwarder
    ```
 
