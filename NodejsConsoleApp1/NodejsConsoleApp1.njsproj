@@ -28,6 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="modi_prestart.js" />
     <Content Include="modi.js" />
     <Content Include="app - Copy.js" />
     <Content Include="app.js" />
